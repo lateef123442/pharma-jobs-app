@@ -35,7 +35,9 @@ router.get('/', async (req, res) => {
       description: job.description || 'No description available',
       requirements: job.contract_type || 'Not specified',
       salary_range: job.salary_min ? `${job.salary_min} - ${job.salary_max}` : 'Not specified',
-      created_at: job.created
+      created_at: job.created,
+      redirect_url: job.redirect_url || null,
+      company_logo: job.company?.logo_url || null
     }));
 
     // Cache the jobs for quick lookup in details

@@ -5,7 +5,7 @@ const { OpenAI } = require('openai');
 const express = require('express');
 require('dotenv').config(); // Load .env
 const dashboardRouter = require('./routes/dashboard'); // Your jobs router
-const apiRouter = require('./routes/api'); // If in separate file
+const apiRouter = require('./routes/interview-questions'); // If in separate file
 
 const app = express();
 app.set('view engine', 'ejs');
