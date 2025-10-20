@@ -19,7 +19,7 @@ app.use('/contact', require('./routes/contact'));  // Added for dashboard
 app.use('/about', require('./routes/about'));  // Added for dashboard
 app.use('/interview-questions', apiRouter);
 
-app.listen(3000, () => console.log('App running on port 3000'));
+app.listen(1000, () => console.log('App running on port 3000'));
 
 
 
