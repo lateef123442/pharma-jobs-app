@@ -324,25 +324,16 @@
   <div class="hero">
     <h1>Interview Questions</h1>
   </div>
-<div class="container">
-  <div class="section">
-    <h2>Medical & Pharma Interview Questions</h2>
-    <p>Prepare for your next interview with AI-generated questions and answers tailored to the pharmaceutical and medical fields. Click on a question to reveal the answer.</p>
-    <div class="questions-list">
-      <% questions.forEach((q, index) => { %>
-        <div class="question-item" onclick="toggleAnswer(<%= index %>)">
-          <div class="question-header">
-            <h3><%= q.question %></h3>
-            <i class="fas fa-chevron-down"></i>
-          </div>
-          <div class="question-answer" id="answer-<%= index %>">
-            <p><%= q.answer %></p>
-          </div>
-        </div>
-      <% }); %>
+ <div class="container">
+    <div class="section">
+      <h2>Medical & Pharma Interview Questions</h2>
+      <p>Prepare for your next interview with AI-generated questions and answers tailored to the pharmaceutical and medical fields. Click on a question to reveal the answer.</p>
+      <div class="questions-list" id="questions-list">
+        <!-- Questions will be loaded here via JS -->
+        <div class="loading">Loading questions...</div>
+      </div>
     </div>
   </div>
-</div>
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-section">
@@ -382,7 +373,8 @@
     document.addEventListener('DOMContentLoaded', async () => {
       const list = document.getElementById('questions-list');
       try {
-        const response = await fetch('/api/interview-questions');
+        const response = await fetch('/api/interview-questions');  // Fetch from the API
+        if (!response.ok) throw new Error('Failed to fetch');
         const questions = await response.json();
         list.innerHTML = questions.map((q, index) => `
           <div class="question-item" onclick="toggleAnswer(${index})">
@@ -405,7 +397,8 @@
       const item = document.querySelectorAll('.question-item')[index];
       item.classList.toggle('active');
     }
-        function toggleMenu() {
+
+    function toggleMenu() {
       const navLinks = document.getElementById('navLinks');
       navLinks.classList.toggle('active');
     }

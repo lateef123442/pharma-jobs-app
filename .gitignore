@@ -4,3 +4,31 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+
+
+
+
+
+
+
+  import os
+  from dotenv import load_dotenv
+  from openai import OpenAI
+
+  # Load environment variables from .env
+  load_dotenv()
+
+  # Retrieve the API key
+  api_key = os.getenv('OPENAI_API_KEY')
+
+  # Initialize OpenAI client
+  client = OpenAI(api_key=api_key)
+
+  # Example usage: Generate a response
+  response = client.chat.completions.create(
+      model="gpt-3.5-turbo",
+      messages=[{"role": "user", "content": "Hello, world!"}]
+  )
+  print(response.choices[0].message.content)
+  
